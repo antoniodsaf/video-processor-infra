@@ -30,7 +30,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform -ch-dir=eks init -input=false 
+        run: terraform -chdir=eks init -input=false 
 
       - name: Terraform Plan
         id: plan
