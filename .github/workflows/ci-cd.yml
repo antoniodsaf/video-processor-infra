@@ -30,16 +30,16 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform -C eks init -input=false 
+        run: terraform -ch-dir=eks init -input=false 
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -C eks -out=tfplan -no-color -input=false
+        run: terraform -chdir=eks plan -out=tfplan -no-color -input=false
         continue-on-error: true
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -C eks -input=false -auto-approve
+        run: terraform -chdir=eks apply -input=false -auto-approve
 
   create_db:
     name: terraform
@@ -62,13 +62,13 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform -C db init -input=false 
+        run: terraform -chdir=db init -input=false 
 
       - name: Terraform Plan
         id: plan
-        run: terraform plan -C db -out=tfplan -no-color -input=false
+        run: terraform -chdir=db plan -out=tfplan -no-color -input=false
         continue-on-error: true
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -C db -input=false -auto-approve
+        run: terraform -chdir=db apply -input=false -auto-approve
